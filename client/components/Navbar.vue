@@ -1,9 +1,10 @@
 <template lang="pug">
 .navbar
   .navbar__container
-    .navbar__item
-      span Logo
-    .navbar__item
+    .navbar__item(title="More projects")
+      a.navbar__link(:href="authorGithubUrl" target="__blank" aria-label="show more projects made by Wen-Wei")
+        IconSquirrel.icon-svg.icon-svg--medium.icon--clickable
+    .navbar__item(title="Current theme name")
       span.navbar__theme-state {{ theme }}
     .navbar__item(title="Change Theme")
       IconPaintcan(@click="toggleTheme").icon-svg.icon-svg--medium.icon--clickable
@@ -26,7 +27,7 @@
 
   &__container
     display flex
-    justify-content space-evenly
+    justify-content space-between
     align-items center
     margin 0 auto
     width var(--root-desktop-width)
@@ -36,6 +37,12 @@
     margin 0 1rem
     height var(--navbar-height)
     line-height var(--navbar-height)
+
+  &__link
+    color var(--navbar-text-color)
+
+    &:hover, &:visited
+      color var(--navbar-text-color)
 
   &__theme-state
     text-transform uppercase
@@ -49,13 +56,15 @@
 <script>
 import { mapState } from "vuex"
 import IconPaintcan from "@primer/octicons/build/svg/paintcan.svg"
+import IconSquirrel from "@primer/octicons/build/svg/squirrel.svg"
 import ThemeManager from "../helpers/ThemeManager.js"
 
 export default {
   computed: {
     ...mapState("theme", ["theme"])
   },
-  components: { IconPaintcan },
+  components: { IconPaintcan, IconSquirrel },
+  data: () => ({ authorGithubUrl: "https://github.com/silveryiris" }),
   methods: {
     toggleTheme() {
       const bodyNode = document.querySelector("body")
