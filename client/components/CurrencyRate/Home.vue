@@ -2,10 +2,10 @@
 .currency-rate-home
   .currency-rate-home__list 
     span API server repository : 
-    a(:href="apiRepositoryUrl") {{ apiRepositoryUrl }}
+    a.link(:href="apiRepositoryUrl") {{ apiRepositoryUrl }}
   .currency-rate-home__list
     span Bank of Taiwan data source : 
-    a(:href="botSourceUrl") {{ botSourceUrl }}
+    a.link(:href="botSourceUrl") {{ botSourceUrl }}
 </template>
 
 <style lang="stylus">
