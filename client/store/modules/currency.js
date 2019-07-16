@@ -1,3 +1,5 @@
+import Vue from "vue"
+
 const state = {
   rates: [],
   lastUpdate: "",
@@ -8,7 +10,7 @@ const state = {
 const actions = {
   async fetchRates({ commit, dispatch }) {
     try {
-      const result = await fetch("http://127.0.0.1:5566/rate").then(res => res.json())
+      const result = await fetch(Vue.$global.API_ENDPOINT).then(res => res.json())
       commit("setRates", result.data)
       commit("setLastUpdateTime", result.date)
       commit("setSourceFileName", result.fileName)

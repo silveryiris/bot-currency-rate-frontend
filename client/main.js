@@ -12,6 +12,9 @@ import "./styles/main.styl"
 Vue.use(VueRouter)
 Vue.use(VueMeta)
 
+// setting global variables
+Vue.$global = { API_ENDPOINT: "http://127.0.0.1:5566/rate" }
+
 const app = new Vue({ router, el: "#app", store, render: h => h(App) })
 
 export default app
