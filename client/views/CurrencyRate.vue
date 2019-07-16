@@ -94,20 +94,11 @@ export default {
     link: [{ rel: "preconnect", href: "http://127.0.0.1:5566", crossorigin: "use-credentials" }]
   },
   async created() {
-    await this.$store.dispatch("fetchCurrencyRates")
+    await this.$store.dispatch("currency/fetchRates")
   },
   computed: {
-    ...mapState({
-      rates(state) {
-        return state.currency.rates
-      },
-      sourceName(state) {
-        return state.currency.sourceName
-      },
-      lastUpdate(state) {
-        return state.currency.lastUpdate
-      }
-    }),
+    ...mapState("currency", ["rates", "sourceName", "lastUpdate"]),
+    ...mapState("error", ["error"]),
     lastUpdateLocalTime() {
       return new Date(this.lastUpdate).toLocaleString()
     }

@@ -25,20 +25,18 @@ import IconCloudDownload from "@primer/octicons/build/svg/cloud-download.svg"
 
 export default {
   computed: {
-    ...mapState({
-      rates(state) {
-        return state.currency.rates
-      }
-    })
+    ...mapState("currency", ["rates", "sourceName"]),
+    dowloadFileName() {
+      return this.sourceName
+    }
   },
   components: { IconCloudDownload },
   mounted() {
     const target = this.$el.querySelector("#download-rate-json")
     const data = JSON.stringify(this.rates)
     const blob = new Blob([data])
-    target.download = "wtf.json"
+    target.download = `${this.dowloadFileName}.json`
     target.href = URL.createObjectURL(blob)
-  },
-  methods: {}
+  }
 }
 </script>

@@ -1,20 +1,25 @@
 const state = {
   rates: [],
   lastUpdate: "",
-  sourceName: ""
+  sourceName: "",
+  error: null
 }
 
 const actions = {
-  async fetchCurrencyRates({ commit }) {
-    const result = await fetch("http://127.0.0.1:5566/rate").then(res => res.json())
-    commit("setCurrencyRates", result.data)
-    commit("setLastUpdateTime", result.date)
-    commit("setSourceFileName", result.fileName)
+  async fetchRates({ commit, dispatch }) {
+    try {
+      const result = await fetch("http://127.0.0.1:5566/rate").then(res => res.json())
+      commit("setRates", result.data)
+      commit("setLastUpdateTime", result.date)
+      commit("setSourceFileName", result.fileName)
+    } catch (err) {
+      dispatch("error/assign", err, { root: true })
+    }
   }
 }
 
 const mutations = {
-  setCurrencyRates(state, rates) {
+  setRates(state, rates) {
     state.rates = rates
   },
   setLastUpdateTime(state, time) {
@@ -25,4 +30,4 @@ const mutations = {
   }
 }
 
-export default { namespace: true, state, actions, mutations }
+export default { namespaced: true, state, actions, mutations }

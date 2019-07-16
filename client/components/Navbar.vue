@@ -53,11 +53,7 @@ import ThemeManager from "../helpers/ThemeManager.js"
 
 export default {
   computed: {
-    ...mapState({
-      theme(state) {
-        return state.theme.theme
-      }
-    })
+    ...mapState("theme", ["theme"])
   },
   components: { IconPaintcan },
   methods: {
@@ -67,7 +63,7 @@ export default {
       const theme = tm.getCurrentTheme()
       const toggleKey = theme === "dark" ? "light" : "dark"
       tm.applyTheme(toggleKey)
-      this.$store.dispatch("changeTheme", toggleKey)
+      this.$store.dispatch("theme/change", toggleKey)
     }
   }
 }

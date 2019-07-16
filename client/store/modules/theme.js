@@ -3,7 +3,7 @@ const state = {
 }
 
 const actions = {
-  changeTheme({ commit }, themeName) {
+  change({ commit }, themeName) {
     commit("setTheme", themeName)
   }
 }
@@ -14,4 +14,4 @@ const mutations = {
   }
 }
 
-export default { namespace: true, state, actions, mutations }
+export default { namespaced: true, state, actions, mutations }

@@ -28,7 +28,7 @@ function persistTheme(to, from, next) {
   const bodyNode = document.querySelector("body")
   const tm = new ThemeManager(bodyNode)
   tm.applyPresistentTheme()
-  store.dispatch("changeTheme", tm.getCurrentTheme())
+  store.dispatch("theme/change", tm.getCurrentTheme())
   next()
 }
 
