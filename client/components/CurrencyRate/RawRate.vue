@@ -1,7 +1,7 @@
 <template lang="pug">
 .currency-rate-raw
   p(v-for="x in rates") {{ x }}
-  a#download-rate-json.currency-rate-raw__download(title="Download JSON file")
+  a#download-rate-json.currency-rate-raw__download(title="Download JSON file" @click="assignFileName")
     IconCloudDownload.icon-svg.icon-svg--large
     span json
 </template>
@@ -25,18 +25,26 @@ import IconCloudDownload from "@primer/octicons/build/svg/cloud-download.svg"
 
 export default {
   computed: {
-    ...mapState("currency", ["rates", "sourceName"]),
-    dowloadFileName() {
-      return this.sourceName
+    ...mapState("currency", ["rates", "sourceName", "lastUpdate"]),
+    downloadFileName() {
+      return this.sourceName.replace(".csv", "")
     }
   },
   components: { IconCloudDownload },
+  data: () => ({
+    downloadId: "#download-rate-json"
+  }),
   mounted() {
-    const target = this.$el.querySelector("#download-rate-json")
+    const target = this.$el.querySelector(this.downloadId)
     const data = JSON.stringify(this.rates)
     const blob = new Blob([data])
-    target.download = `${this.dowloadFileName}.json`
     target.href = URL.createObjectURL(blob)
+  },
+  methods: {
+    assignFileName() {
+      const target = this.$el.querySelector(this.downloadId)
+      target.download = `${this.downloadFileName}.json`
+    }
   }
 }
 </script>
