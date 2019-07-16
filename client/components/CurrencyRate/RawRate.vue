@@ -1,6 +1,6 @@
 <template lang="pug">
 .currency-rate-raw
-  p(v-for="x in rates") {{ x }}
+  .currency-rate-raw__list(v-for="x in rates") {{ x }}
   a#download-rate-json.currency-rate-raw__download(title="Download JSON file" @click="assignFileName")
     IconCloudDownload.icon-svg.icon-svg--large
     span json
@@ -8,6 +8,11 @@
 
 <style lang="stylus">
 .currency-rate-raw
+  &__list
+    display block
+    margin 1rem 0
+    padding 0 1rem
+
   &__download
     display flex
     align-items center
