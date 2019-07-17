@@ -78,6 +78,7 @@
 </style>
 
 <script>
+import { API_ENDPOINT } from "../global.js"
 import { mapState } from "vuex"
 import Navbar from "../components/Navbar.vue"
 import Footer from "../components/Footer.vue"
@@ -91,7 +92,7 @@ export default {
   metaInfo: {
     titleTemplate: "%s - home",
     meta: [{ name: "Description", content: "Display Bank of Taiwan currency rates" }],
-    link: [{ rel: "preconnect", href: "http://127.0.0.1:5566", crossorigin: "use-credentials" }]
+    link: [{ rel: "preconnect", href: `${API_ENDPOINT}`, crossorigin: "use-credentials" }]
   },
   async created() {
     await this.$store.dispatch("currency/fetchRates")
@@ -103,9 +104,7 @@ export default {
       return new Date(this.lastUpdate).toLocaleString()
     }
   },
-  data: () => ({}),
-  components: { Navbar, Footer, IconListUnordered, IconRocket, IconFileCode, IconFile, IconClock },
-  methods: {}
+  components: { Navbar, Footer, IconListUnordered, IconRocket, IconFileCode, IconFile, IconClock }
 }
 </script>
 
