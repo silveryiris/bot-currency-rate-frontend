@@ -15,6 +15,10 @@
   &__list
     margin 1rem 0
     padding 0 1rem
+
+@media screen and (max-width: 768px)
+  .currency-rate-home
+    min-height 20vh
 </style>
 
 <script>

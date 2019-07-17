@@ -1,18 +1,18 @@
 <template lang="pug">
 .currency-rate-display
   .currency-rate__table
-    .currency-rate__row
+    .currency-rate__row.currency-rate__row-header
       .currency-rate__cell Currency
       .currency-rate__cell.currency-rate__cell--number Buying Cash
       .currency-rate__cell.currency-rate__cell--number Buying Spot
       .currency-rate__cell.currency-rate__cell--number Selling Cash
       .currency-rate__cell.currency-rate__cell--number Selling Spot
     .currency-rate__row.currency-rate__row--hoverable(v-for="x in rates")
-      .currency-rate__cell {{ x.currency }}
-      .currency-rate__cell.currency-rate__cell--number {{ x.buying.cash }}
-      .currency-rate__cell.currency-rate__cell--number {{ x.buying.spot }}
-      .currency-rate__cell.currency-rate__cell--number {{ x.selling.cash }}
-      .currency-rate__cell.currency-rate__cell--number {{ x.selling.spot }}
+      .currency-rate__cell.currency-rate__currency {{ x.currency }}
+      .currency-rate__cell.currency-rate__cell--number(data-title="Buying Cash") {{ x.buying.cash }}
+      .currency-rate__cell.currency-rate__cell--number(data-title="Buying Spot") {{ x.buying.spot }}
+      .currency-rate__cell.currency-rate__cell--number(data-title="Selling Cash") {{ x.selling.cash }}
+      .currency-rate__cell.currency-rate__cell--number(data-title="Selling Spot") {{ x.selling.spot }}
 </template>
 
 <style lang="stylus">
@@ -36,6 +36,10 @@
         background var(--color-currency-rate-table-hover)
         cursor pointer
 
+  &__row-header
+    margin-bottom 0.5rem
+    font-weight bold
+
   &__cell
     display flex
     justify-content center
@@ -44,6 +48,28 @@
 
     &--number
       justify-content flex-end
+
+@media screen and (max-width: 475px)
+  .currency-rate
+    &__row-header
+      display none
+
+    &__row
+      margin-bottom 2.5rem
+      grid-template-columns 1fr
+
+    &__cell
+      justify-content center
+      padding 0.5rem
+
+    &__cell--number
+      &:before
+        margin-right 15vw
+        content attr(data-title)
+
+    &__currency
+      justify-content center
+      margin-bottom 0.5rem
 </style>
 
 <script>
