@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "mocha -r esm",
+    "start": "cross-env NODE_ENV=production pm2 start server/server.js --node-args='-r esm'",
     "start:dev": "node -r esm server/server.js",
     "clean": "rimraf ./dist/**",
     "compile": "npx webpack -r esm --config build/webpack.config.js",
