@@ -3,9 +3,12 @@
   .currency-rate-home__list 
     span API server repository : 
     a.link(:href="apiRepositoryUrl") {{ apiRepositoryUrl }}
+  .currency-rate-home__list 
+    span Frontend repository : 
+    a.link(:href="repositoryUrl") {{ repositoryUrl }}
   .currency-rate-home__list
     span Bank of Taiwan data source : 
-    a.link(:href="botSourceUrl") {{ botSourceUrl }}
+    a.link(:href="currencyRateSourceUrl") {{ currencyRateSourceUrl }}
 </template>
 
 <style lang="stylus">
@@ -24,8 +27,9 @@
 <script>
 export default {
   data: () => ({
+    repositoryUrl:"https://github.com/silveryiris/bot-currency-rate-frontend",
     apiRepositoryUrl: "https://github.com/silveryiris/bot-currency-rate-api-server",
-    botSourceUrl: "https://rate.bot.com.tw/xrt?Lang=zh-TW"
+    currencyRateSourceUrl: "https://rate.bot.com.tw/xrt"
   })
 }
 </script>
