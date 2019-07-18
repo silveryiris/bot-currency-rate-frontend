@@ -10,7 +10,7 @@ html(lang="en")
       link(href=`${css}` as="style" rel="preload")
     each css in htmlWebpackPlugin.files.css
       link(href=`${css}` rel="stylesheet")      
-  body(data-theme="dark")
+  body(data-theme="light")
     #app
 
     each js in htmlWebpackPlugin.files.js
