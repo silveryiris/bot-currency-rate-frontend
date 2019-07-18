@@ -1,10 +1,9 @@
-# bot-currency-rate-frontend
-Bank of Taiwan currency rate frontend
+# Bank of Taiwan currency rate frontend
 
 - SPA (Single Page Application) ready.
 
 # Optimized
-![audits](https://i.imgur.com/4e48JOd.png)
+![audits](https://i.imgur.com/ltmou0G.png)
 
 # Style
 - Modular style files and structure , can load what you want or add extra styles with `main.styl`.
@@ -13,9 +12,9 @@ Bank of Taiwan currency rate frontend
 # Theme switch
 - Use `Css variable` to elegant change width, color, custom theme ......etc.
 
-![theme css](https://i.imgur.com/n1Hj6Pu.png)
+![theme css](https://i.imgur.com/oNQu6yv.png)
 
-![theme css dark](https://i.imgur.com/w2KD3qz.png)
+![theme css dark](https://i.imgur.com/3VC41XH.png)
 
 - Simple `ThemeManager` class to handle theme switch and persistent when reload or url changes.
 
@@ -23,7 +22,7 @@ Bank of Taiwan currency rate frontend
 # SVG Icon
 - [Octicons](https://octicons.github.com/) with svg inline
 
-![svg icon](https://i.imgur.com/Mi7q1WH.png)
+![svg icon](https://i.imgur.com/CLD0YCN.png)
 
 # Handy settings
 - 404 route handling.
