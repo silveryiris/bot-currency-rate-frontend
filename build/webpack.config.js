@@ -1,3 +1,5 @@
+import webpack from "webpack"
+import dotenv from "dotenv"
 import path from "path"
 import { VueLoaderPlugin } from "vue-loader"
 import HtmlPlugin from "html-webpack-plugin"
@@ -7,10 +9,13 @@ import OptimizeCssPlugin from "optimize-css-assets-webpack-plugin"
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer"
 import CopyPlugin from "copy-webpack-plugin"
 
+dotenv.config()
+
 const mode = process.env.NODE_ENV
 const isBundleAnalyzer = process.env.npm_config_report ? true : false
 
 const sourceDir = "./client"
+const compiledDirName = "dist"
 
 const webpackConfig = {
   entry: { main: sourceDir + "/main.js" },
@@ -72,7 +77,7 @@ const webpackConfig = {
       }
     ]
   },
-  output: { path: path.resolve("dist"), publicPath: "/", filename: "js/[name].[chunkhash:7].js" },
+  output: { path: path.resolve(compiledDirName), publicPath: "/", filename: "js/[name].[chunkhash:7].js" },
   optimization: {
     minimizer: [new TerserPlugin(), new OptimizeCssPlugin()],
     runtimeChunk: "single",
@@ -89,7 +94,10 @@ const webpackConfig = {
     }
   },
   plugins: [
-    new CopyPlugin([{ from: "client/public", to: "../dist" }]),
+    new webpack.DefinePlugin({
+      API_ENDPOINT: JSON.stringify(process.env.API_ENDPOINT)
+    }),
+    new CopyPlugin([{ from: "client/public", to: `../${compiledDirName}` }]),
     new VueLoaderPlugin(),
     new ExtraCssChunksPlugin({ filename: "css/[name].[chunkhash:7].css" }),
     new HtmlPlugin({ template: path.resolve(sourceDir + "/index.pug"), chunksSortMode: "dependency", inject: false })
