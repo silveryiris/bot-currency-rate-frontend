@@ -4,13 +4,13 @@
 
   main.center-layout.currency-rate__main
     nav.currency-rate__navi
-      router-link.link.currency-rate__navi-item(to="/rate")
+      router-link.link.currency-rate__navi-item(to="/")
         IconRocket.icon-svg
         span Home
-      router-link.link.currency-rate__navi-item(to="/rate/raw")
+      router-link.link.currency-rate__navi-item(to="/raw")
         IconFileCode.icon-svg
         span Raw 
-      router-link.link.currency-rate__navi-item(to="/rate/table")
+      router-link.link.currency-rate__navi-item(to="/table")
         IconListUnordered.icon-svg
         span Table
 
