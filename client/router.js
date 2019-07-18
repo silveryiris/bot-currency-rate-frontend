@@ -11,7 +11,7 @@ const router = new VueRouter({
   mode: "history",
   routes: [
     {
-      path: "/rate",
+      path: "/",
       component: CurrencyRate,
       children: [
         { path: "", component: HomeRate },
