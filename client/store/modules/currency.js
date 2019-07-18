@@ -10,7 +10,7 @@ const state = {
 const actions = {
   async fetchRates({ commit, dispatch }) {
     try {
-      const result = await fetch(API_ENDPOINT).then(res => res.json())
+      const result = await fetch(`${API_ENDPOINT}/rate`).then(res => res.json())
       commit("setRates", result.data)
       commit("setLastUpdateTime", result.date)
       commit("setSourceFileName", result.fileName)
