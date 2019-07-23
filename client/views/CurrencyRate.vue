@@ -24,6 +24,11 @@
       | 
       span : {{ sourceName }}
 
+    section.currency-rate__meta(title="Base currency")
+      IconMilestone.icon-svg.icon-svg--medium
+      | 
+      span : Base Currency - {{ baseCurrency }}
+
     router-view
 
     Footer
@@ -88,6 +93,7 @@ import IconRocket from "@primer/octicons/build/svg/rocket.svg"
 import IconFileCode from "@primer/octicons/build/svg/file-code.svg"
 import IconFile from "@primer/octicons/build/svg/file.svg"
 import IconClock from "@primer/octicons/build/svg/clock.svg"
+import IconMilestone from "@primer/octicons/build/svg/milestone.svg"
 
 export default {
   metaInfo: {
@@ -99,13 +105,13 @@ export default {
     await this.$store.dispatch("currency/fetchRates")
   },
   computed: {
-    ...mapState("currency", ["rates", "sourceName", "lastUpdate"]),
+    ...mapState("currency", ["rates", "sourceName", "lastUpdate", "baseCurrency"]),
     ...mapState("error", ["error"]),
     lastUpdateLocalTime() {
       return new Date(this.lastUpdate).toLocaleString()
     }
   },
-  components: { Navbar, Footer, IconListUnordered, IconRocket, IconFileCode, IconFile, IconClock }
+  components: { Navbar, Footer, IconListUnordered, IconRocket, IconFileCode, IconFile, IconClock, IconMilestone }
 }
 </script>
 

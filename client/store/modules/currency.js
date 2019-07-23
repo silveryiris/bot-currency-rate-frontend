@@ -4,6 +4,7 @@ const state = {
   rates: [],
   lastUpdate: "",
   sourceName: "",
+  baseCurrency: "",
   error: null
 }
 
@@ -14,6 +15,7 @@ const actions = {
       commit("setRates", result.data)
       commit("setLastUpdateTime", result.date)
       commit("setSourceFileName", result.fileName)
+      commit("setBaseCurrency", result.baseCurrency)
     } catch (err) {
       dispatch("error/assign", err, { root: true })
     }
@@ -29,6 +31,9 @@ const mutations = {
   },
   setSourceFileName(state, name) {
     state.sourceName = name
+  },
+  setBaseCurrency(state, currencyCode) {
+    state.baseCurrency = currencyCode
   }
 }
 

@@ -27,7 +27,7 @@
 <script>
 export default {
   data: () => ({
-    repositoryUrl:"https://github.com/silveryiris/bot-currency-rate-frontend",
+    repositoryUrl: "https://github.com/silveryiris/bot-currency-rate-frontend",
     apiRepositoryUrl: "https://github.com/silveryiris/bot-currency-rate-api-server",
     currencyRateSourceUrl: "https://rate.bot.com.tw/xrt"
   })
