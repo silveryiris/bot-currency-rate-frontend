@@ -8,6 +8,7 @@ import TerserPlugin from "terser-webpack-plugin"
 import OptimizeCssPlugin from "optimize-css-assets-webpack-plugin"
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer"
 import CopyPlugin from "copy-webpack-plugin"
+import { commitHash, commitHashShort } from "./git.js"
 
 dotenv.config()
 
@@ -95,7 +96,9 @@ const webpackConfig = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      API_ENDPOINT: JSON.stringify(process.env.API_ENDPOINT)
+      API_ENDPOINT: JSON.stringify(process.env.API_ENDPOINT),
+      COMMIT_HASH: JSON.stringify(commitHash),
+      COMMIT_HASH_SHORT: JSON.stringify(commitHashShort)
     }),
     new CopyPlugin([{ from: "client/public", to: `../${compiledDirName}` }]),
     new VueLoaderPlugin(),

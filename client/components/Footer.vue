@@ -2,8 +2,9 @@
 footer.footer
   section.footer__source-section
     .footer__title Source
-    a.link(href="https://github.com/silveryiris/bot-currency-rate-frontend" aria-label="github")
-      IconMarkGithub.icon-svg.icon-svg--large.footer__icon
+    a.link.footer__last-commit(:href="`https://github.com/silveryiris/bot-currency-rate-frontend/commit/${commitHash}`" aria-label="github")
+      IconMarkGithub.icon-svg.icon-svg--medium.footer__icon
+      span {{ commitHashShort }}
 </template>
 <style lang="stylus">
 .footer
@@ -23,13 +24,20 @@ footer.footer
     grid-column 3
 
   &__icon
-    margin 0 1rem
+    margin 0 0.5rem
     fill var(--color-main-text)
+
+  &__last-commit
+    display flex
+    justify-content center
+    align-items center
 </style>
 <script>
+/* global COMMIT_HASH COMMIT_HASH_SHORT */
 import IconMarkGithub from "@primer/octicons/build/svg/mark-github.svg"
 
 export default {
+  data: () => ({ commitHash: COMMIT_HASH, commitHashShort: COMMIT_HASH_SHORT }),
   components: { IconMarkGithub }
 }
 </script>
