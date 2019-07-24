@@ -37,4 +37,10 @@ const mutations = {
   }
 }
 
-export default { namespaced: true, state, actions, mutations }
+const getters = {
+  currencyCodeList: state => {
+    return [].concat(...state.rates.map(x => x.currency))
+  }
+}
+
+export default { namespaced: true, state, actions, mutations, getters }
