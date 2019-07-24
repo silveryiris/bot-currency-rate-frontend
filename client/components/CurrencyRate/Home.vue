@@ -1,5 +1,6 @@
 <template lang="pug">
 .currency-rate-home
+  CurrencyRateConverter
   .currency-rate-home__list 
     span API server repository : 
     a.link(:href="apiRepositoryUrl") {{ apiRepositoryUrl }}
@@ -25,7 +26,10 @@
 </style>
 
 <script>
+import CurrencyRateConverter from "./Converter.vue"
+
 export default {
+  components: { CurrencyRateConverter },
   data: () => ({
     repositoryUrl: "https://github.com/silveryiris/bot-currency-rate-frontend",
     apiRepositoryUrl: "https://github.com/silveryiris/bot-currency-rate-api-server",
