@@ -18,7 +18,6 @@
   &__list-wrapper
     display block
     overflow auto
-    width 100%
 
   &__list
     display block
@@ -41,9 +40,13 @@
 
 @media screen and (max-width: 475px)
   .currency-rate-raw
+    &__list-wrapper
+      width 100%
+
     &__list
       margin 0.5rem auto
       padding 0 0.5rem
+      font-size 0.8rem
 </style>
 
 <script>
