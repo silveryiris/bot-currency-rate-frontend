@@ -51,22 +51,30 @@
       grid-area baseInput
 
     &__base-currency
+      font-size 1.4rem
       grid-area baseCurrency
 
     &__equal-mark
       margin 1rem 0
-      font-size 1.5rem
+      font-size 1.8rem
       grid-area equalMark
 
     &__target-input
       grid-area targetInput
 
     &__target-currency-select
+      margin-left 0.5rem
+      font-size 1.4rem
       grid-area targetCurrencySelect
 
     &__notes
       margin-top 2rem
       margin-bottom 0
+
+    &__base-input, &__target-input
+      width 100%
+      font-size 1.4rem
+      line-height 1.4rem
 </style>
 
 <script>
