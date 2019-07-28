@@ -45,7 +45,8 @@
 
     &__calc
       display grid
-      grid-template-columns 70vw 20vw
+      box-sizing border-box
+      padding 0 0.5rem
       grid-template-areas "baseInput baseCurrency" "equalMark equalMark" "targetInput targetCurrencySelect"
 
     &__base-input
