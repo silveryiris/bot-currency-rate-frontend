@@ -7,7 +7,7 @@
       .currency-rate__cell.currency-rate__cell--number Buying Spot
       .currency-rate__cell.currency-rate__cell--number Selling Cash
       .currency-rate__cell.currency-rate__cell--number Selling Spot
-    .currency-rate__row.currency-rate__row--hoverable(v-for="x in rates")
+    .currency-rate__row.currency-rate__row--hoverable(v-for="x in rates" @click="()=>{true}")
       .currency-rate__cell.currency-rate__currency {{ x.currency }}
       .currency-rate__cell.currency-rate__cell--number(data-title="Buying Cash") {{ x.buying.cash }}
       .currency-rate__cell.currency-rate__cell--number(data-title="Buying Spot") {{ x.buying.spot }}
