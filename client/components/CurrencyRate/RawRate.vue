@@ -3,30 +3,10 @@
   a#download-rate-json.currency-rate-raw__download(title="Download JSON file" @click="assignFileName")
     IconCloudDownload.icon-svg.icon-svg--large
     span json
-  pre.currency-rate-raw__list(v-for="x in rates")
-    |    {
-    |      "currency": "{{x.currency}}"" ,
-    |      "buying": {
-    |        "cash": "{{x.buying.cash}}",
-    |        "spot": "{{x.buying.spot}}",
-    |        "forward10Days": "{{x.buying.forward10Days}}",
-    |        "forward30Days": "{{x.buying.forward30Days}}",
-    |        "forward60Days": "{{x.buying.forward60Days}}",
-    |        "forward90Days": "{{x.buying.forward90Days}}",
-    |        "forward120Days": "{{x.buying.forward120Days}}",
-    |        "forward150Days": "{{x.buying.forward150Days}}"
-    |      },
-    |      "selling": {
-    |        "cash": "{{x.selling.cash}}",
-    |        "spot": "{{x.selling.spot}}",
-    |        "forward10Days": "{{x.selling.forward10Days}}",
-    |        "forward30Days": "{{x.selling.forward30Days}}",
-    |        "forward60Days": "{{x.selling.forward60Days}}",
-    |        "forward90Days": "{{x.selling.forward90Days}}",
-    |        "forward120Days": "{{x.selling.forward120Days}}",
-    |        "forward150Days": "{{x.selling.forward150Days}}"          
-    |      }
-    |    }
+  .currency-rate-raw__list-wrapper(v-for="x in rates")
+    pre.currency-rate-raw__list
+      | {{ JSON.stringify(x, undefined, 4) }}
+
 </template>
 
 <style lang="stylus">
@@ -35,10 +15,19 @@
   flex-direction column
   align-items center
 
+  &__list-wrapper
+    display block
+    overflow auto
+    width 100%
+
   &__list
     display block
-    margin 1rem 0
-    padding 0 1rem
+    overflow-y hidden
+    box-sizing border-box
+    margin 1rem auto
+    padding 1rem
+    font-family monospace
+    line-height 1.5
 
   &__download
     display flex
@@ -49,6 +38,12 @@
     text-decoration none
     text-transform uppercase
     cursor pointer
+
+@media screen and (max-width: 475px)
+  .currency-rate-raw
+    &__list
+      margin 0.5rem auto
+      padding 0 0.5rem
 </style>
 
 <script>
