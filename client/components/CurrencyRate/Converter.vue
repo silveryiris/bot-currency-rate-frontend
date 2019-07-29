@@ -1,24 +1,27 @@
 <template lang="pug">
 .currency-rate-converter
   .currency-rate-converter__calc
-    input.input.currency-rate-converter__base-input(
-      type="number" 
-      min=0 
-      @input="updateSourceToTargetCurrency($event.target.value)" 
-      :value="currencyNumber"
-      aria-label="base currency input"
-    )
-    span.currency-rate-converter__base-currency {{ baseCurrency }}
-    span.currency-rate-converter__equal-mark =
-    input.input.currency-rate-converter__target-input(
-      type="number"
-      min=0 
-      @input="updateTargetToSourceCurrency($event.target.value)" 
-      :value="targetCurrencyNumber"
-      aria-label="target currency input"
-    )
-    select.input.currency-rate-converter__target-currency-select(v-model="selectedCurrencyCode" @change="changeTargetCurrency" aria-label="select target currency")
-      option(v-for="code in currencyCodeList" :value="code") {{ code }}
+    .currency-rate-converter__item-group
+      input.input.currency-rate-converter__base-input(
+        type="number" 
+        min=0 
+        @input="updateSourceToTargetCurrency($event.target.value)" 
+        :value="currencyNumber"
+        aria-label="base currency input"
+      )
+      span.currency-rate-converter__base-currency {{ baseCurrency }}
+    .currency-rate-converter__item-group
+      span.currency-rate-converter__equal-mark =
+    .currency-rate-converter__item-group
+      input.input.currency-rate-converter__target-input(
+        type="number"
+        min=0 
+        @input="updateTargetToSourceCurrency($event.target.value)" 
+        :value="targetCurrencyNumber"
+        aria-label="target currency input"
+      )
+      select.input.currency-rate-converter__target-currency-select(v-model="selectedCurrencyCode" @change="changeTargetCurrency" aria-label="select target currency")
+        option(v-for="code in currencyCodeList" :value="code") {{ code }}
   .currency-rate-converter__notes
     span *Calculate currencies are base on Bank of Taiwan Spot selling price.
 </template>
@@ -51,36 +54,33 @@
   &__convert-result
     margin 0 1rem
 
+  &__item-group
+    display flex
+    justify-content center
+    align-items center
+
 @media screen and (max-width: 475px)
   .currency-rate-converter
     margin 5rem 0
 
     &__calc
-      display grid
+      display flex
+      flex-direction column
+      align-items inherit
       box-sizing border-box
       padding 0 0.5rem
-      grid-template-areas "baseInput baseCurrency" "equalMark equalMark" "targetInput targetCurrencySelect"
-
-    &__base-input
-      grid-area baseInput
 
     &__base-currency
       margin 0 0 0 0.5rem
       font-size 1.4rem
-      grid-area baseCurrency
 
     &__equal-mark
       margin 1rem 0
       font-size 1.8rem
-      grid-area equalMark
-
-    &__target-input
-      grid-area targetInput
 
     &__target-currency-select
       margin-left 0.5rem
       font-size 1.4rem
-      grid-area targetCurrencySelect
 
     &__notes
       margin-top 2rem
