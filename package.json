@@ -29,12 +29,13 @@
     "rimraf": "^2.6.3",
     "stylus": "^0.54.5",
     "vue": "^2.6.10",
-    "vue-meta": "^2.1.1",
+    "vue-meta": "^2.2.0",
     "vue-router": "^3.0.7",
     "vuex": "^3.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "acorn": "^6.2.1",
     "autoprefixer": "^9.6.1",

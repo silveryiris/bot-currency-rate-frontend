@@ -32,12 +32,22 @@ const webpackConfig = {
       { test: /\.vue$/, loader: "vue-loader", include: path.resolve(sourceDir) },
       {
         test: /\.svg$/,
-        loader: "vue-svg-loader",
-        options: {
-          svgo: {
-            plugins: [{ removeDimensions: true }, { removeViewBox: false }]
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              plugins: ["@babel/plugin-proposal-object-rest-spread"]
+            }
+          },
+          {
+            loader: "vue-svg-loader",
+            options: {
+              svgo: {
+                plugins: [{ removeDimensions: true }, { removeViewBox: false }]
+              }
+            }
           }
-        }
+        ]
       },
       {
         test: /\.js$/,
