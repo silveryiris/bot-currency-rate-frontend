@@ -1,11 +1,23 @@
 <template lang="pug">
 .currency-rate-converter
   .currency-rate-converter__calc
-    input.input.currency-rate-converter__base-input(type="number" min=0 @input="updateSourceToTargetCurrency($event.target.value)" :value="currencyNumber")
+    input.input.currency-rate-converter__base-input(
+      type="number" 
+      min=0 
+      @input="updateSourceToTargetCurrency($event.target.value)" 
+      :value="currencyNumber"
+      aria-label="base currency input"
+    )
     span.currency-rate-converter__base-currency {{ baseCurrency }}
     span.currency-rate-converter__equal-mark =
-    input.input.currency-rate-converter__target-input(type="number" min=0 @input="updateTargetToSourceCurrency($event.target.value)" :value="targetCurrencyNumber")
-    select.input.currency-rate-converter__target-currency-select(v-model="selectedCurrencyCode" @change="changeTargetCurrency")
+    input.input.currency-rate-converter__target-input(
+      type="number"
+      min=0 
+      @input="updateTargetToSourceCurrency($event.target.value)" 
+      :value="targetCurrencyNumber"
+      aria-label="target currency input"
+    )
+    select.input.currency-rate-converter__target-currency-select(v-model="selectedCurrencyCode" @change="changeTargetCurrency" aria-label="select target currency")
       option(v-for="code in currencyCodeList" :value="code") {{ code }}
   .currency-rate-converter__notes
     span *Calculate currencies are base on Bank of Taiwan Spot selling price.
