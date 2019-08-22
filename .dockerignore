@@ -1,0 +1,7 @@
+*Dockerfile*
+*docker-compose*
+node_modules
+dist
+test
+README.md
+LICENSE
