@@ -1,17 +1,16 @@
-/* global API_ENDPOINT */
-
 const state = {
   rates: [],
   lastUpdate: "",
   sourceName: "",
   baseCurrency: "",
-  error: null
+  error: null,
 }
 
 const actions = {
   async fetchRates({ commit, dispatch }) {
     try {
-      const result = await fetch(API_ENDPOINT + "/rate").then(res => res.json())
+      const response = await fetch("/api/rate")
+      const result = await response.json()
       commit("setRates", result.data)
       commit("setLastUpdateTime", result.date)
       commit("setSourceFileName", result.fileName)
@@ -19,7 +18,7 @@ const actions = {
     } catch (err) {
       dispatch("error/assign", err, { root: true })
     }
-  }
+  },
 }
 
 const mutations = {
@@ -34,13 +33,13 @@ const mutations = {
   },
   setBaseCurrency(state, currencyCode) {
     state.baseCurrency = currencyCode
-  }
+  },
 }
 
 const getters = {
   currencyCodeList: state => {
     return [].concat(...state.rates.map(x => x.currency))
-  }
+  },
 }
 
 export default { namespaced: true, state, actions, mutations, getters }

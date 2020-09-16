@@ -7,5 +7,5 @@ import error from "./modules/error.js"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  modules: { theme, currency, error }
+  modules: { theme, currency, error },
 })

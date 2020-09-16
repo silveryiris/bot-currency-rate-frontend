@@ -9,24 +9,24 @@
         span Home
       router-link.link.currency-rate__navi-item(to="/raw")
         IconFileCode.icon-svg
-        span Raw 
+        span Raw
       router-link.link.currency-rate__navi-item(to="/table")
         IconListUnordered.icon-svg
         span Table
 
     section.currency-rate__meta(title="Last update time")
       IconClock.icon-svg.icon-svg--medium
-      | 
+      |
       span : {{ lastUpdateLocalTime }}
 
     section.currency-rate__meta(title="Source file name")
       IconFile.icon-svg.icon-svg--medium
-      | 
+      |
       span : {{ sourceName }}
 
     section.currency-rate__meta(title="Base currency")
       IconMilestone.icon-svg.icon-svg--medium
-      | 
+      |
       span : Base Currency - {{ baseCurrency }}
 
     router-view
@@ -65,7 +65,7 @@
   &__main
     margin-top 1rem
 
-@media screen and (max-width: 768px)
+@media screen and (max-width 768px)
   .currency-rate
     &__main
       margin-top 0
@@ -73,7 +73,7 @@
     &__navi
       border-radius 0
 
-@media screen and (max-width: 475px)
+@media screen and (max-width 475px)
   .currency-rate
     &__navi-item
       margin 0
@@ -83,25 +83,23 @@
 </style>
 
 <script>
-/* global API_ENDPOINT */
-
 import { mapState } from "vuex"
-import Navbar from "../components/Navbar.vue"
-import Footer from "../components/Footer.vue"
-import IconListUnordered from "@primer/octicons/build/svg/list-unordered.svg"
-import IconRocket from "@primer/octicons/build/svg/rocket.svg"
-import IconFileCode from "@primer/octicons/build/svg/file-code.svg"
-import IconFile from "@primer/octicons/build/svg/file.svg"
-import IconClock from "@primer/octicons/build/svg/clock.svg"
-import IconMilestone from "@primer/octicons/build/svg/milestone.svg"
+import Navbar from "@/components/Navbar.vue"
+import Footer from "@/components/Footer.vue"
+import IconListUnordered from "@primer/octicons/build/svg/list-unordered-16.svg"
+import IconRocket from "@primer/octicons/build/svg/rocket-16.svg"
+import IconFileCode from "@primer/octicons/build/svg/file-code-16.svg"
+import IconFile from "@primer/octicons/build/svg/file-16.svg"
+import IconClock from "@primer/octicons/build/svg/clock-16.svg"
+import IconMilestone from "@primer/octicons/build/svg/milestone-16.svg"
 
 export default {
   metaInfo: {
     titleTemplate: "%s - home",
     meta: [{ name: "Description", content: "Display Bank of Taiwan currency rates" }],
-    link: [{ rel: "preconnect", href: API_ENDPOINT, crossorigin: "use-credentials" }]
+    link: [{ rel: "preconnect", href: process.env.VUE_APP_API_URL, crossorigin: "use-credentials" }],
   },
-  async created() {
+  async mounted() {
     await this.$store.dispatch("currency/fetchRates")
   },
   computed: {
@@ -109,10 +107,8 @@ export default {
     ...mapState("error", ["error"]),
     lastUpdateLocalTime() {
       return new Date(this.lastUpdate).toLocaleString()
-    }
+    },
   },
-  components: { Navbar, Footer, IconListUnordered, IconRocket, IconFileCode, IconFile, IconClock, IconMilestone }
+  components: { Navbar, Footer, IconListUnordered, IconRocket, IconFileCode, IconFile, IconClock, IconMilestone },
 }
 </script>
-
-

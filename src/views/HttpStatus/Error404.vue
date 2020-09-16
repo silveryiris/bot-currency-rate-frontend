@@ -1,10 +1,10 @@
 <template lang="pug">
- main.http-error-404.center-layout
+main.http-error-404.center-layout
   section.http-error-404__section
     .http-error-404__main-title.title 404 Not Found
     picture.http-error-404__cat-image
-      source(:srcset="mainImageUrl" type="image/jpeg" )
-      img(src="/img/default.jpg" alt="404 not found")
+      source(:srcset="mainImageUrl", type="image/jpeg")
+      img(src="/img/default.jpg", alt="404 not found")
 
   section.http-error-404__section
     router-link.link.http-error-404__go-home(to="/")
@@ -36,7 +36,7 @@
     display flex
     justify-content center
 
-@media screen and (max-width: 768px)
+@media screen and (max-width 768px)
   .http-error-404
     &__cat-image
       width 100%
@@ -46,17 +46,17 @@
         width 100%
 </style>
 <script>
-import Footer from "../../components/Footer.vue"
-import IconRocket from "@primer/octicons/build/svg/rocket.svg"
+import Footer from "@/components/Footer.vue"
+import IconRocket from "@primer/octicons/build/svg/rocket-16.svg"
 
 export default {
   metaInfo: {
     titleTemplate: "%s - 404",
-    meta: [{ name: "Description", content: "There is No content with this url, sorry." }]
+    meta: [{ name: "Description", content: "There is No content with this url, sorry." }],
   },
   components: { Footer, IconRocket },
   data: () => ({
-    mainImageUrl: "https://i.imgur.com/GRoqrOu.jpg"
-  })
+    mainImageUrl: "https://i.imgur.com/GRoqrOu.jpg",
+  }),
 }
 </script>

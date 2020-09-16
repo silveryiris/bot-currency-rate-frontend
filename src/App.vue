@@ -5,9 +5,6 @@
 
 <script>
 export default {
-  metaInfo: {
-    title: "BOT Currency Rate Frontend"
-  }
+  metaInfo: { title: "BOT Currency Rate Frontend" },
 }
 </script>
-

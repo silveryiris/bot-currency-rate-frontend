@@ -1,13 +1,42 @@
 <template lang="pug">
 .currency-rate-raw
-  a#download-rate-json.currency-rate-raw__download(title="Download JSON file" @click="assignFileName")
+  a#download-rate-json.currency-rate-raw__download(title="Download JSON file", @click="assignFileName")
     IconCloudDownload.icon-svg.icon-svg--large
     span json
   .currency-rate-raw__list-wrapper(v-for="x in rates")
     pre.currency-rate-raw__list
       | {{ JSON.stringify(x, undefined, 4) }}
-
 </template>
+
+<script>
+import { mapState } from "vuex"
+import IconCloudDownload from "@primer/octicons/build/svg/download-16.svg"
+
+export default {
+  computed: {
+    ...mapState("currency", ["rates", "sourceName", "lastUpdate"]),
+    downloadFileName() {
+      return this.sourceName.replace(".csv", "")
+    },
+  },
+  components: { IconCloudDownload },
+  data: () => ({
+    downloadId: "#download-rate-json",
+  }),
+  mounted() {
+    const target = this.$el.querySelector(this.downloadId)
+    const data = JSON.stringify(this.rates)
+    const blob = new Blob([data])
+    target.href = URL.createObjectURL(blob)
+  },
+  methods: {
+    assignFileName() {
+      const target = this.$el.querySelector(this.downloadId)
+      target.download = `${this.downloadFileName}.json`
+    },
+  },
+}
+</script>
 
 <style lang="stylus">
 .currency-rate-raw
@@ -38,7 +67,7 @@
     text-transform uppercase
     cursor pointer
 
-@media screen and (max-width: 475px)
+@media screen and (max-width 475px)
   .currency-rate-raw
     &__list-wrapper
       width 100%
@@ -48,33 +77,3 @@
       padding 0 0.5rem
       font-size 0.8rem
 </style>
-
-<script>
-import { mapState } from "vuex"
-import IconCloudDownload from "@primer/octicons/build/svg/cloud-download.svg"
-
-export default {
-  computed: {
-    ...mapState("currency", ["rates", "sourceName", "lastUpdate"]),
-    downloadFileName() {
-      return this.sourceName.replace(".csv", "")
-    }
-  },
-  components: { IconCloudDownload },
-  data: () => ({
-    downloadId: "#download-rate-json"
-  }),
-  mounted() {
-    const target = this.$el.querySelector(this.downloadId)
-    const data = JSON.stringify(this.rates)
-    const blob = new Blob([data])
-    target.href = URL.createObjectURL(blob)
-  },
-  methods: {
-    assignFileName() {
-      const target = this.$el.querySelector(this.downloadId)
-      target.download = `${this.downloadFileName}.json`
-    }
-  }
-}
-</script>

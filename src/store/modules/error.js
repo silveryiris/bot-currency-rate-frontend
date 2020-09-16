@@ -1,11 +1,11 @@
 const state = {
-  error: null
+  error: null,
 }
 
 const actions = {
   assign({ commit }, error) {
     commit("setError", error)
-  }
+  },
 }
 
 const mutations = {
@@ -14,7 +14,7 @@ const mutations = {
   },
   clearError(state) {
     state.error = null
-  }
+  },
 }
 
 export default { namespaced: true, state, actions, mutations }
