@@ -7,13 +7,27 @@
       .currency-rate__cell.currency-rate__cell--number Buying Spot
       .currency-rate__cell.currency-rate__cell--number Selling Cash
       .currency-rate__cell.currency-rate__cell--number Selling Spot
-    .currency-rate__row.currency-rate__row--hoverable(v-for="x in rates" @click="()=>{true}")
+    .currency-rate__row.currency-rate__row--hoverable(v-for="x in rates", @click="() => { true; }")
       .currency-rate__cell.currency-rate__currency {{ x.currency }}
       .currency-rate__cell.currency-rate__cell--number(data-title="Buying Cash") {{ x.buying.cash }}
       .currency-rate__cell.currency-rate__cell--number(data-title="Buying Spot") {{ x.buying.spot }}
       .currency-rate__cell.currency-rate__cell--number(data-title="Selling Cash") {{ x.selling.cash }}
       .currency-rate__cell.currency-rate__cell--number(data-title="Selling Spot") {{ x.selling.spot }}
 </template>
+
+<script>
+import { mapState } from "vuex"
+
+export default {
+  computed: {
+    ...mapState({
+      rates(state) {
+        return state.currency.rates
+      },
+    }),
+  },
+}
+</script>
 
 <style lang="stylus">
 :root
@@ -49,7 +63,7 @@
     &--number
       justify-content flex-end
 
-@media screen and (max-width: 475px)
+@media screen and (max-width 475px)
   .currency-rate
     &__row-header
       display none
@@ -71,17 +85,3 @@
       justify-content center
       margin-bottom 0.5rem
 </style>
-
-<script>
-import { mapState } from "vuex"
-
-export default {
-  computed: {
-    ...mapState({
-      rates(state) {
-        return state.currency.rates
-      }
-    })
-  }
-}
-</script>
