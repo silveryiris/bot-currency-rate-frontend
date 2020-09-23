@@ -1,7 +1,7 @@
-*Dockerfile*
-*docker-compose*
-node_modules
-dist
+Dockerfile
+docker-compose*
+**/node_modules
+**/dist
 test
 README.md
 LICENSE
